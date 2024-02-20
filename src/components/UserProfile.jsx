@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import Avatar from "react-avatar";
 
 function UserProfile() {
   const [formData, setFormData] = useState({
-    username: "",
+    username: "John Joe",
     email: "",
     password: "",
     newPassword: "",
     confirmPassword: "",
+    profilePicUrl: "",
   });
 
   const handleChange = (e) => {
@@ -19,75 +21,150 @@ function UserProfile() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your logic to handle form submission, such as updating user profile
-    console.log(formData);
-    // Reset form fields after submission
-    setFormData({
-      username: "",
-      email: "",
-      password: "",
-      newPassword: "",
-      confirmPassword: "",
-    });
+    console.log("Form data submitted:", formData);
+    // Here, you can handle the form submission, like sending the data to a backend server.
+    // After submission, you might want to reset the form or give some feedback to the user.
   };
 
   return (
-    <main>
-      <h2>User Profile Management</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="text-center mb-8">
+        {formData.profilePicUrl ? (
+          <img
+            src={formData.profilePicUrl}
+            alt="Profile"
+            className="rounded-full mx-auto w-32 h-32 object-cover"
+          />
+        ) : (
+          <Avatar
+            name={formData.username || "User"}
+            size="100"
+            round={true}
+            className="mx-auto"
+          />
+        )}
+        <h2 className="text-xl font-semibold mt-4">
+          {formData.username || "Your Name"}
+        </h2>
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 bg-white p-6 rounded-lg shadow"
+      >
+        <div className="flex flex-col">
+          <label
+            htmlFor="username"
+            className="mb-1 text-sm font-semibold text-gray-700"
+          >
+            Username:
+          </label>
           <input
             type="text"
             id="username"
             name="username"
             value={formData.username}
             onChange={handleChange}
+            className="border border-gray-300 p-2 rounded-md"
+            required
           />
         </div>
-        <div>
-          <label htmlFor="email">Email:</label>
+
+        <div className="flex flex-col">
+          <label
+            htmlFor="email"
+            className="mb-1 text-sm font-semibold text-gray-700"
+          >
+            Email:
+          </label>
           <input
             type="email"
             id="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
+            className="border border-gray-300 p-2 rounded-md"
+            required
           />
         </div>
-        <div>
-          <label htmlFor="password">Current Password:</label>
+
+        <div className="flex flex-col">
+          <label
+            htmlFor="profilePicUrl"
+            className="mb-1 text-sm font-semibold text-gray-700"
+          >
+            Profile Picture URL:
+          </label>
+          <input
+            type="text"
+            id="profilePicUrl"
+            name="profilePicUrl"
+            value={formData.profilePicUrl}
+            onChange={handleChange}
+            className="border border-gray-300 p-2 rounded-md"
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label
+            htmlFor="password"
+            className="mb-1 text-sm font-semibold text-gray-700"
+          >
+            Current Password:
+          </label>
           <input
             type="password"
             id="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
+            className="border border-gray-300 p-2 rounded-md"
+            required
           />
         </div>
-        <div>
-          <label htmlFor="newPassword">New Password:</label>
+
+        <div className="flex flex-col">
+          <label
+            htmlFor="newPassword"
+            className="mb-1 text-sm font-semibold text-gray-700"
+          >
+            New Password:
+          </label>
           <input
             type="password"
             id="newPassword"
             name="newPassword"
             value={formData.newPassword}
             onChange={handleChange}
+            className="border border-gray-300 p-2 rounded-md"
           />
         </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirm New Password:</label>
+
+        <div className="flex flex-col">
+          <label
+            htmlFor="confirmPassword"
+            className="mb-1 text-sm font-semibold text-gray-700"
+          >
+            Confirm New Password:
+          </label>
           <input
             type="password"
             id="confirmPassword"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
+            className="border border-gray-300 p-2 rounded-md"
           />
         </div>
-        <button type="submit">Update Profile</button>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Update Profile
+        </button>
       </form>
-    </main>
+    </div>
   );
 }
 
