@@ -1,13 +1,31 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* If you're using a separate CSS file, add this class */
+.card {
+  @apply bg-gray-800 p-6 rounded-lg shadow-lg;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.min-h-screen {
+  min-height: 100vh; /* Full viewport height */
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+/* If you have a header/footer, calculate their heights */
+.h-full.min-h-screen {
+  min-height: calc(100vh - /* Header height + Footer height */);
+  box-sizing: border-box;
+}
+
+/* styles.css or App.css */
+.overflow-auto {
+  overflow: auto;
+}
+
+.chart-container {
+  overflow-x: hidden;
 }
