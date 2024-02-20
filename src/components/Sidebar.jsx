@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,141 +11,162 @@ import {
   faShieldAlt,
   faSignInAlt,
   faUserPlus,
+  faUser,
   faTachometerAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import AuthContext from "../context/AuthProvider"; // Correct import path as needed
+// Import only useAuth from your AuthProvider module
+import { useAuth } from "../context/AuthProvider";
 
 function Sidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { auth, setAuth } = useContext(AuthContext);
+  // Destructure logout function and possibly user state from useAuth
+  const { auth, logout } = useAuth();
 
   const isLoggedIn = !!auth?.user;
 
+  // Handle logout logic using the logout function from useAuth
   const handleLogout = () => {
-    setAuth({});
+    logout(); // This should correctly logout the user
     setIsSidebarOpen(false);
   };
-
   return (
-    <>
-    <main>
-      <div className="md:hidden fixed top-0 right-0 z-50 p-4">
-        <button
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="text-white bg-gray-700 p-2 rounded focus:outline-none focus:ring"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
-        </button>
-      </div>
-
-      <div
-        className={`min-h-screen bg-gray-800 text-white fixed md:relative z-40 w-64 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 transition-transform duration-300 overflow-auto`}
+    <div className="flex flex-col md:flex-row min-h-screen">
+      <aside
+        className={`bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform ${
+          isSidebarOpen ? "-translate-x-0" : "-translate-x-full"
+        } md:relative md:translate-x-0 transition duration-200 ease-in-out`}
       >
-        <div className="font-bold text-xl p-5">Dashboard</div>
-        <ul className="flex flex-col p-5 gap-2">
-          {/* Home */}
-          <li className="hover:bg-gray-700 p-2 rounded flex items-center">
-            <FontAwesomeIcon icon={faHome} className="mr-2" />
-            <NavLink to="/" onClick={() => setIsSidebarOpen(false)}>
-              Home
+        <div className="font-bold text-xl mb-4">Dashboard</div>
+        <ul>
+          <li>
+            <NavLink
+              to="/"
+              className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+            >
+              <FontAwesomeIcon icon={faHome} className="mr-4" /> Home
             </NavLink>
           </li>
-
-          {/* Dashboard */}
-          <li className="hover:bg-gray-700 p-2 rounded flex items-center">
-            <FontAwesomeIcon icon={faTachometerAlt} className="mr-2" />
-            <NavLink to="/dashboard" onClick={() => setIsSidebarOpen(false)}>
+          <li>
+            <NavLink
+              to="/dashboard"
+              className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+            >
+              <FontAwesomeIcon icon={faTachometerAlt} className="mr-4" />{" "}
               Dashboard
             </NavLink>
           </li>
-
-          {/* Analytics */}
-          <li className="hover:bg-gray-700 p-2 rounded flex items-center">
-            <FontAwesomeIcon icon={faChartBar} className="mr-2" />
-            <NavLink to="/analytics" onClick={() => setIsSidebarOpen(false)}>
-              Analytics
+          <li>
+            <NavLink
+              to="/analytics"
+              className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+            >
+              <FontAwesomeIcon icon={faChartBar} className="mr-4" /> Analytics
             </NavLink>
           </li>
-
-          {/* Help / FAQ */}
-          <li className="hover:bg-gray-700 p-2 rounded flex items-center">
-            <FontAwesomeIcon icon={faQuestionCircle} className="mr-2" />
-            <NavLink to="/help" onClick={() => setIsSidebarOpen(false)}>
-              Help / FAQ
+          <li>
+            {/* UserProfile Component Placeholder - Implement actual navigation or modal */}
+            <NavLink
+              to="/profile"
+              className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+            >
+              <FontAwesomeIcon icon={faUser} className="mr-4" /> UserProfile
             </NavLink>
           </li>
-
-          {/* Terms of Service */}
-          <li className="hover:bg-gray-700 p-2 rounded flex items-center">
-            <FontAwesomeIcon icon={faFileContract} className="mr-2" />
-            <NavLink to="/terms" onClick={() => setIsSidebarOpen(false)}>
-              Terms of Service
+          <li>
+            <NavLink
+              to="/help"
+              className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+            >
+              <FontAwesomeIcon icon={faQuestionCircle} className="mr-4" /> Help
+              / FAQ
             </NavLink>
           </li>
-
-          {/* Privacy Policy */}
-          <li className="hover:bg-gray-700 p-2 rounded flex items-center">
-            <FontAwesomeIcon icon={faShieldAlt} className="mr-2" />
-            <NavLink to="/privacy" onClick={() => setIsSidebarOpen(false)}>
-              Privacy Policy
+          <li>
+            <NavLink
+              to="/terms"
+              className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+            >
+              <FontAwesomeIcon icon={faFileContract} className="mr-4" /> Terms
+              of Service
             </NavLink>
           </li>
-
-          {/* Conditional rendering based on login status */}
+          <li>
+            <NavLink
+              to="/privacy"
+              className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+            >
+              <FontAwesomeIcon icon={faShieldAlt} className="mr-4" /> Privacy
+              Policy
+            </NavLink>
+          </li>
+          {/* Authentication Links */}
           {isLoggedIn ? (
             <>
-              {/* Settings */}
-              <li className="hover:bg-gray-700 p-2 rounded flex items-center">
-                <FontAwesomeIcon icon={faCog} className="mr-2" />
-                <NavLink to="/settings" onClick={() => setIsSidebarOpen(false)}>
-                  Settings
+              <li>
+                <NavLink
+                  to="/settings"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  <FontAwesomeIcon icon={faCog} className="mr-4" /> Settings
                 </NavLink>
               </li>
-              {/* Log Out */}
-              <li className="hover:bg-gray-700 p-2 rounded flex items-center">
+              <li>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center w-full text-left"
+                  className="w-full text-left block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
                 >
-                  <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-                  Log Out
+                  <FontAwesomeIcon icon={faSignOutAlt} className="mr-4" /> Log
+                  Out
                 </button>
               </li>
             </>
           ) : (
             <>
-              {/* Login */}
-              <li className="hover:bg-gray-700 p-2 rounded flex items-center">
-                <FontAwesomeIcon icon={faSignInAlt} className="mr-2" />
-                <NavLink to="/login" onClick={() => setIsSidebarOpen(false)}>
-                  Login
+              <li>
+                <NavLink
+                  to="/login"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  <FontAwesomeIcon icon={faSignInAlt} className="mr-4" /> Login
                 </NavLink>
               </li>
-              {/* Register */}
-              <li className="hover:bg-gray-700 p-2 rounded flex items-center">
-                <FontAwesomeIcon icon={faUserPlus} className="mr-2" />
-                <NavLink to="/register" onClick={() => setIsSidebarOpen(false)}>
+              <li>
+                <NavLink
+                  to="/register"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  <FontAwesomeIcon icon={faUserPlus} className="mr-4" />{" "}
                   Register
+                </NavLink>
+              </li>
+
+              <li>
+                <a
+                  href="#!"
+                  onClick={handleLogout}
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  <FontAwesomeIcon icon={faSignOutAlt} className="mr-4" /> Log
+                  Out
+                </a>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/settings"
+                  className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+                >
+                  <FontAwesomeIcon icon={faCog} className="mr-4" /> Settings
                 </NavLink>
               </li>
             </>
           )}
         </ul>
+      </aside>
+      <div className="flex-1">
+        {/* Main content goes here, e.g., header, main section */}
       </div>
-      </main>
-    </>
+    </div>
   );
 }
 
