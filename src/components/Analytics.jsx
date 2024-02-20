@@ -95,12 +95,15 @@ const options = {
 
 function ChartComponent() {
   return (
+     <main className="bg-light-900 dark:bg-dark-900 text-light-300 dark:text-dark-300 min-h-screen p-8 overflow-auto">
+
     <div
       className="chart-container"
       style={{ position: "relative", height: "40vh" }}
     >
       <Line data={data} options={options} />
-    </div>
+      </div>
+      </main>
   );
 }
 
