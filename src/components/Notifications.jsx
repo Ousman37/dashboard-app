@@ -3,22 +3,20 @@ import React, { useState } from "react";
 // Notification component
 function Notification({ message, type, onClose }) {
   return (
-    <main>
-      <div
-        className={`notification ${type}`}
-        onClick={() => onClose()}
-        style={{ cursor: "pointer" }}
-      >
-        {message}
-      </div>
-    </main>
+    <div
+      className={`notification ${type}`}
+      onClick={() => onClose()}
+      style={{ cursor: "pointer" }}
+    >
+      {message}
+    </div>
   );
 }
 
 // Notifications component
 function Notifications() {
   const [notifications, setNotifications] = useState([]);
-  // eslint-disable-next-line no-unused-vars
+
   const addNotification = (message, type) => {
     const newNotification = { message, type };
     setNotifications([...notifications, newNotification]);
@@ -30,9 +28,16 @@ function Notifications() {
     setNotifications(updatedNotifications);
   };
 
+  // For demonstration: a function to simulate adding a notification
+  const handleAddNotificationClick = () => {
+    addNotification("This is a new notification!", "info"); // 'info' is a placeholder for the type of notification
+  };
+
   return (
-     <main>
     <div className="notifications-container">
+      {/* Button to add a notification */}
+      <button onClick={handleAddNotificationClick}>Add Notification</button>
+
       {notifications.map((notification, index) => (
         <Notification
           key={index}
@@ -41,8 +46,7 @@ function Notifications() {
           onClose={() => removeNotification(index)}
         />
       ))}
-      </div>
-     </main>
+    </div>
   );
 }
 
