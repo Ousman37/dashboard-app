@@ -29,3 +29,16 @@
 .chart-container {
   overflow-x: hidden;
 }
+
+/* Add these styles in your CSS file or use equivalent Tailwind classes */
+.sidebar {
+  transition: transform 0.3s ease;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
