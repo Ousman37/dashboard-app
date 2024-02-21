@@ -8,7 +8,6 @@
 
 Dive into a world of data exploration with this cutting-edge dashboard application! Crafted using React.js, Express.js, and MongoDB, this dashboard offers a plethora of customizable charts and insightful data visualizations. Navigate effortlessly through its user-friendly interface, designed to empower you in analyzing and interpreting your data with ease. Exciting updates are on the horizon, including the implementation of user authentication functionality and additional UX/UI enhancements. Stay tuned for an even more immersive dashboard experience! User authentication functionality is currently in progress and will be available soon."
 
-
 ## Installation
 
 To run this application locally, follow these steps:
@@ -31,15 +30,13 @@ To run this application locally, follow these steps:
 To use this application, follow these steps:
 
 1. **Sign up or log in to access the dashboard.**
-    - Currently, the login and registration functionalities are not fully implemented. Users can access the dashboard without authentication for now.
+   - Currently, the login and registration functionalities are not fully implemented. Users can access the dashboard without authentication for now.
 2. Explore the different features and visualizations available.
 3. Customize the dashboard according to your needs.
 4. **Log out when you're finished.**
-    - The logout functionality is fully implemented, allowing users to safely log out and protect their user profile.
+   - The logout functionality is fully implemented, allowing users to safely log out and protect their user profile.
 5. **User Profile:**
-    - User profile features, such as editing user information or viewing user details, are not yet implemented but are planned for future updates.
-
-
+   - User profile features, such as editing user information or viewing user details, are not yet implemented but are planned for future updates.
 
 ## Dependencies
 
@@ -52,7 +49,6 @@ To use this application, follow these steps:
 ![Recharts](https://img.shields.io/badge/Recharts-%5E2.12.0-blue?style=flat-square)
 ![Clerk React](https://img.shields.io/badge/Clerk_React-%5E4.30.5-blue?style=flat-square)
 
-
 ## Contributing
 
 Contributions are welcome! Please fork this repository and create a pull request with your changes.
@@ -60,4 +56,3 @@ Contributions are welcome! Please fork this repository and create a pull request
 ## License
 
 This project is licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
