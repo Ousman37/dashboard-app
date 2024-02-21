@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FaHome,
   FaEnvelope,
@@ -6,8 +6,10 @@ import {
   FaChartLine,
   FaProjectDiagram,
   FaCog,
-  // FaPlus,
-  // FaBell,
+  FaArrowRight,
+  FaServer,
+  FaUsers,
+  FaChartArea,
 } from "react-icons/fa";
 import {
   LineChart,
@@ -22,8 +24,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useTheme } from "../context/ThemeContext";
-
-import Notifications from "./Notifications";
 
 const lineChartData = [
   { name: "Jan", uv: 400, pv: 2400, amt: 2400 },
@@ -45,7 +45,6 @@ const pieChartData = [
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 function Home() {
-  const [notifications, setNotifications] = useState([]);
   const { theme } = useTheme();
 
   // Define colors for light and dark themes
@@ -53,56 +52,21 @@ function Home() {
   const gridColor = theme === "dark" ? "#374151" : "#D1D5DB";
   const tooltipBgColor = theme === "dark" ? "#1F2937" : "#F9FAFB";
 
-  // const addNotification = (message, type = "info") => {
-  //   const newNotification = { message, type };
-  //   setNotifications([...notifications, newNotification]);
-  // };
-
-  // // const handleNotification = () => {
-  // //   // Example usage, customize as needed
-  // //   addNotification("You have a new notification!", "info");
-  // // };
-  // const removeNotification = (index) => {
-  //   const newNotifications = [...notifications];
-  //   newNotifications.splice(index, 1);
-  //   setNotifications(newNotifications);
-  // };
-
-  const addNotification = (message, type = "info") => {
-    const newNotification = { message, type };
-    setNotifications([...notifications, newNotification]);
-  };
-
-  const removeNotification = (index) => {
-    const newNotifications = [...notifications];
-    newNotifications.splice(index, 1);
-    setNotifications(newNotifications);
-  };
-
   return (
     <main className="bg-light-900 dark:bg-dark-900 text-light-300 dark:text-dark-300 min-h-screen p-8 overflow-auto">
-      {/* Place Notifications component here to render the list of notifications */}
-      <Notifications
-        notifications={notifications}
-        addNotification={addNotification}
-        removeNotification={removeNotification}
-      />
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-center sm:text-left text-gray-700 dark:text-gray-300">
           Dashboard Overview
         </h2>
       </div>
 
-      {/* Introduction Text */}
       <p className="text-sm sm:text-base mb-6 text-center sm:text-left text-gray-700 dark:text-gray-300">
         Welcome to your dashboard. Here you'll find insightful data and
         analytics to help you understand your performance better. Use the
         navigation to view detailed reports.
       </p>
 
-      {/* Cards Container */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Dynamic Card Rendering */}
         {[
           {
             title: "Total Visits",
@@ -110,8 +74,8 @@ function Home() {
             Icon: FaHome,
             additionalInfo: "5% increase from last month",
             bgColor: "bg-blue-600 hover:bg-blue-700",
-            fontSize: "text-2xl",
-            iconSize: "text-3xl",
+            actionText: "Details",
+            action: () => alert("Viewing Total Visits"),
           },
           {
             title: "Messages",
@@ -119,16 +83,17 @@ function Home() {
             Icon: FaEnvelope,
             additionalInfo: "2 new messages",
             bgColor: "bg-green-600 hover:bg-green-700",
-            fontSize: "text-2xl",
-            iconSize: "text-3xl",
+            actionText: "Read Messages",
+            action: () => alert("Viewing Messages"),
           },
           {
             title: "Recent Activities",
             value: "Last activity 1h ago",
             Icon: FaRegListAlt,
+            additionalInfo: "3 new activities",
             bgColor: "bg-purple-600 hover:bg-purple-700",
-            fontSize: "text-2xl",
-            iconSize: "text-3xl",
+            actionText: "View Activities",
+            action: () => alert("Viewing Recent Activities"),
           },
           {
             title: "Analytics",
@@ -136,16 +101,20 @@ function Home() {
             Icon: FaChartLine,
             additionalInfo: "23% increase",
             bgColor: "bg-red-600 hover:bg-red-700",
-            fontSize: "text-2xl",
-            iconSize: "text-3xl",
+            actionText: "View Report",
+            action: () => alert("Viewing Analytics Report"),
           },
+          // New Financial Growth card
           {
-            title: "Settings",
-            value: "Configurations",
-            Icon: FaCog,
-            bgColor: "bg-yellow-600 hover:bg-yellow-700",
+            title: "Financial Growth",
+            value: "+30%",
+            Icon: FaChartArea,
+            additionalInfo: "Growth in revenue this quarter",
+            bgColor: "bg-pink-600 hover:bg-pink-700",
             fontSize: "text-2xl",
             iconSize: "text-3xl",
+            actionText: "View Details",
+            action: () => alert("Viewing Financial Growth"),
           },
           {
             title: "Project Progress",
@@ -153,36 +122,68 @@ function Home() {
             Icon: FaProjectDiagram,
             additionalInfo: "Ahead of schedule",
             bgColor: "bg-indigo-600 hover:bg-indigo-700",
-            fontSize: "text-2xl",
-            iconSize: "text-3xl",
+            actionText: "Project Details",
+            action: () => alert("Viewing Project Progress"),
+          },
+          // New Card Data
+          {
+            title: "User Engagement",
+            value: "Up by 40%",
+            Icon: FaUsers,
+            additionalInfo: "Compared to last month",
+            bgColor: "bg-teal-600 hover:bg-teal-700",
+            actionText: "Engagement Details",
+            action: () => alert("Viewing User Engagement"),
+          },
+          {
+            title: "Server Uptime",
+            value: "99.99%",
+            Icon: FaServer,
+            additionalInfo: "No downtime reported",
+            bgColor: "bg-orange-600 hover:bg-orange-700",
+            actionText: "Server Stats",
+            action: () => alert("Viewing Server Uptime"),
+          },
+          // End of the cards here
+          {
+            title: "Settings",
+            value: "Configurations",
+            Icon: FaCog,
+            additionalInfo: "Customize your dashboard",
+            bgColor: "bg-yellow-600 hover:bg-yellow-700",
+            actionText: "Configure",
+            action: () => alert("Opening Settings"),
           },
         ].map((card, index) => (
           <div
             key={index}
-            className={`${card.bgColor} transition duration-300 ease-in-out transform hover:-translate-y-1 p-6 rounded-lg shadow-lg flex flex-col items-start justify-between  text-white`}
+            className={`${card.bgColor} transition duration-300 ease-in-out transform hover:-translate-y-1 p-6 rounded-lg shadow-lg flex flex-col justify-between text-white`}
           >
-            <div className="flex items-center space-x-3">
-              <card.Icon className={`${card.iconSize}`} />{" "}
-              {/* Update the className */}
-              <div>
-                <p className={`text-sm font-medium uppercase ${card.fontSize}`}>
-                  {card.title}
-                </p>
-                <p className={`font-bold ${card.fontSize}`}>{card.value}</p>
-                {card.additionalInfo && (
-                  <p className="text-sm mt-2">{card.additionalInfo}</p>
-                )}
+            <div>
+              <div className="flex items-center space-x-3">
+                <card.Icon size={24} />
+                <div>
+                  <h3 className="font-bold text-xl">{card.title}</h3>
+                  <p className="text-sm">{card.additionalInfo}</p>
+                </div>
               </div>
+              <p className="mt-4 font-semibold text-lg">{card.value}</p>
             </div>
+            <button
+              onClick={card.action}
+              className="mt-4 py-2 px-4 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors duration-200 self-start flex items-center"
+            >
+              {card.actionText} <FaArrowRight className="ml-2" />
+            </button>
           </div>
         ))}
       </div>
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        {/* Line Chart Container */}
-        <div className="bg-dark-accent p-6 rounded-lg shadow-lg ">
-          <h3 className="text-sm uppercase mb-4  text-gray-700 dark:text-gray-300">
+        {/* Line Chart */}
+        <div className="bg-dark-accent p-6 rounded-lg shadow-lg">
+          <h3 className="text-sm uppercase mb-4 text-gray-700 dark:text-gray-300">
             Sales Over Time
           </h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -216,9 +217,9 @@ function Home() {
           </ResponsiveContainer>
         </div>
 
-        {/* Pie Chart Container */}
+        {/* Pie Chart */}
         <div className="bg-dark-accent p-6 rounded-lg shadow-lg">
-          <h3 className=" text-sm uppercase mb-4  text-gray-700 dark:text-gray-300">
+          <h3 className="text-sm uppercase mb-4 text-gray-700 dark:text-gray-300">
             Traffic Sources
           </h3>
           <ResponsiveContainer width="100%" height={300}>
