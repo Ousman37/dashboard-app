@@ -220,7 +220,6 @@ function Home() {
                 cx="50%"
                 cy="50%"
                 outerRadius="70%"
-                fill="chart-secondary"
                 dataKey="value"
                 labelLine={false}
                 label={({ name, percent }) =>
@@ -236,8 +235,9 @@ function Home() {
               </Pie>
               <Tooltip
                 wrapperStyle={{
-                  borderColor: "dark-accent",
-                  backgroundColor: "dark-bg",
+                  borderColor: theme === "light" ? "#8884d8" : "#0088FE",
+                  backgroundColor: theme === "light" ? "#ffffff" : "#121212",
+                  color: theme === "light" ? "#000000" : "#ffffff",
                 }}
               />
             </PieChart>
