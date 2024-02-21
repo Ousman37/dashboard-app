@@ -1,4 +1,3 @@
-// src/components/Home.js
 import React, { useState } from "react";
 import {
   FaHome,
@@ -7,8 +6,8 @@ import {
   FaChartLine,
   FaProjectDiagram,
   FaCog,
-  FaPlus,
-  FaBell,
+  // FaPlus,
+  // FaBell,
 } from "react-icons/fa";
 import {
   LineChart,
@@ -54,35 +53,44 @@ function Home() {
   const gridColor = theme === "dark" ? "#374151" : "#D1D5DB";
   const tooltipBgColor = theme === "dark" ? "#1F2937" : "#F9FAFB";
 
-  // Function to add a notification
-  const addNotification = (message, type) => {
+  // const addNotification = (message, type = "info") => {
+  //   const newNotification = { message, type };
+  //   setNotifications([...notifications, newNotification]);
+  // };
+
+  // // const handleNotification = () => {
+  // //   // Example usage, customize as needed
+  // //   addNotification("You have a new notification!", "info");
+  // // };
+  // const removeNotification = (index) => {
+  //   const newNotifications = [...notifications];
+  //   newNotifications.splice(index, 1);
+  //   setNotifications(newNotifications);
+  // };
+
+  const addNotification = (message, type = "info") => {
     const newNotification = { message, type };
     setNotifications([...notifications, newNotification]);
   };
 
-  const handleNotification = () => {
-    // Example: Adding a generic notification
-    addNotification("New Notification!", "info"); // Adjust type as needed
+  const removeNotification = (index) => {
+    const newNotifications = [...notifications];
+    newNotifications.splice(index, 1);
+    setNotifications(newNotifications);
   };
 
   return (
     <main className="bg-light-900 dark:bg-dark-900 text-light-300 dark:text-dark-300 min-h-screen p-8 overflow-auto">
-      <Notifications addNotification={addNotification} />
+      {/* Place Notifications component here to render the list of notifications */}
+      <Notifications
+        notifications={notifications}
+        addNotification={addNotification}
+        removeNotification={removeNotification}
+      />
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-center sm:text-left text-gray-700 dark:text-gray-300">
           Dashboard Overview
         </h2>
-        <div className="flex space-x-4 mt-4 sm:mt-0">
-          <button className="bg-blue-600 hover:bg-blue-700 p-2 rounded-full">
-            <FaBell className="text-white" size={16} />
-          </button>
-          <button
-            onClick={handleNotification}
-            className="bg-red-600 hover:bg-red-700 p-2 rounded-full"
-          >
-            <FaPlus className="text-white" size={16} />
-          </button>
-        </div>
       </div>
 
       {/* Introduction Text */}
