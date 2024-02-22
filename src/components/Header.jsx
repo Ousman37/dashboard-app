@@ -10,13 +10,13 @@ import {
   FaSun,
   FaMoon,
 } from "react-icons/fa";
-import UserProfile from "./UserProfile"; // Ensure this is the correct path to your UserProfile component
-import { useTheme } from "../context/ThemeContext"; // Import useTheme if needed
+import UserProfile from "./UserProfile"; 
+import { useTheme } from "../context/ThemeContext"; 
 
 // Accepting toggleSidebar as a prop
 function Header({ toggleSidebar }) {
   const { isLoggedIn, logout } = useAuth();
-  const { theme, toggleTheme } = useTheme(); // Use the useTheme hook here
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="flex justify-between items-center w-full bg-gray-700 text-white p-5 text-lg font-semibold">
