@@ -1,3 +1,5 @@
+// Home.jsx
+
 import React from "react";
 import {
   FaHome,
@@ -24,6 +26,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useTheme } from "../context/ThemeContext";
+import CustomPieLabel from "./CustomPieLabel";
 
 const lineChartData = [
   { name: "Jan", uv: 400, pv: 2400, amt: 2400 },
@@ -223,17 +226,15 @@ function Home() {
             Traffic Sources
           </h3>
           <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
+            <PieChart margin={{ top: 50, right: 30, bottom: 30, left: 40 }}>
               <Pie
                 data={pieChartData}
-                cx="50%"
+                label={<CustomPieLabel />}
                 cy="50%"
                 outerRadius="70%"
                 dataKey="value"
                 labelLine={false}
-                label={({ name, percent }) =>
-                  `${name}: ${(percent * 100).toFixed(0)}%`
-                }
+                // label={renderCustomizedLabel}
               >
                 {pieChartData.map((entry, index) => (
                   <Cell
@@ -242,6 +243,7 @@ function Home() {
                   />
                 ))}
               </Pie>
+
               <Tooltip
                 wrapperStyle={{
                   borderColor: theme === "light" ? "#8884d8" : "#0088FE",
