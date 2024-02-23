@@ -25,13 +25,13 @@ const CustomPieLabel = ({
   }, []);
 
   // Adjust the radius based on the label position (top or bottom)
-  const isTopLabel = midAngle < 180 || midAngle > 360; 
+  const isTopLabel = midAngle < 180 || midAngle > 360;
   const radius = isTopLabel ? outerRadius * 1.1 : outerRadius * 1.2;
   // Calculate the position of the label
-  
-  const x = cx + radius * Math.cos(-midAngle * RADIAN); 
-  const y = cy + radius * Math.sin(-midAngle * RADIAN); 
-  const fillColor = COLORS[index % COLORS.length]; 
+
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  const fillColor = COLORS[index % COLORS.length];
 
   // Determine if label should be visible based on the percent and window width
   const isVisible = percent > 0.05 || windowWidth > 768;
@@ -44,8 +44,8 @@ const CustomPieLabel = ({
       fill={fillColor}
       textAnchor={x > cx ? "start" : "end"}
       dominantBaseline="central"
-      fontSize={windowWidth > 768 ? "16px" : "12px"} 
-      style={{ pointerEvents: "none" }} 
+      fontSize={windowWidth > 768 ? "16px" : "14px"}
+      style={{ pointerEvents: "none" }}
     >
       {`${payload.name}: ${(percent * 100).toFixed(0)}%`}
     </text>
