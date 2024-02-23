@@ -44,7 +44,7 @@ const CustomPieLabel = ({
       fill={fillColor}
       textAnchor={x > cx ? "start" : "end"}
       dominantBaseline="central"
-      fontSize={windowWidth > 768 ? "16px" : "14px"}
+      fontSize={windowWidth > 768 ? "16px" : "12px"}
       style={{ pointerEvents: "none" }}
     >
       {`${payload.name}: ${(percent * 100).toFixed(0)}%`}
