@@ -44,7 +44,7 @@ function Dashboard({ user }) {
   };
 
   return (
-    <main className="bg-gray-800   min-h-screen  p-5">
+    <main className=" bg-light-900 dark:bg-dark-900 text-light-300 dark:text-dark-300 min-h-screen p-8">
       <div>
         <Search onSearch={handleSearch} />
         <div className="flex flex-wrap justify-center gap-4 mt-4">
@@ -58,7 +58,7 @@ function Dashboard({ user }) {
             </button>
           ))}
         </div>
-        <div className="dashboard-grid mt-4">
+        <div className="dashboard-grid mt-4 text-black">
           {filteredWidgets.map((widgetName) => (
             <Widget
               key={widgetName}
