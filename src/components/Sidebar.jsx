@@ -23,7 +23,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
 
   const handleLogout = () => {
     logout();
-    toggleSidebar(); // Optionally close the sidebar on logout
+    toggleSidebar(); // Close the sidebar on logout
   };
 
   return (
@@ -38,7 +38,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
           <NavLink
             to="/"
             className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-            onClick={() => toggleSidebar()}
+            onClick={toggleSidebar}
           >
             <FontAwesomeIcon icon={faHome} className="mr-4" /> Home
           </NavLink>
@@ -47,35 +47,35 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
           <NavLink
             to="/dashboard"
             className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-            onClick={() => toggleSidebar()}
+            onClick={toggleSidebar}
           >
             <FontAwesomeIcon icon={faTachometerAlt} className="mr-4" />{" "}
             Dashboard
           </NavLink>
         </li>
         <li>
-          {/* UserProfile Component Placeholder - Implement actual navigation or modal */}
-          <NavLink
-            to="/profile"
-            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-          >
-            <FontAwesomeIcon icon={faUser} className="mr-4" /> UserProfile
-          </NavLink>
-        </li>
-        <li>
           <NavLink
             to="/analytics"
             className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-            onClick={() => toggleSidebar()}
+            onClick={toggleSidebar}
           >
             <FontAwesomeIcon icon={faChartBar} className="mr-4" /> Analytics
           </NavLink>
         </li>
         <li>
           <NavLink
+            to="/profile"
+            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+            onClick={toggleSidebar}
+          >
+            <FontAwesomeIcon icon={faUser} className="mr-4" /> UserProfile
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/help"
             className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-            onClick={() => toggleSidebar()}
+            onClick={toggleSidebar}
           >
             <FontAwesomeIcon icon={faQuestionCircle} className="mr-4" /> Help /
             FAQ
@@ -85,7 +85,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
           <NavLink
             to="/terms"
             className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-            onClick={() => toggleSidebar()}
+            onClick={toggleSidebar}
           >
             <FontAwesomeIcon icon={faFileContract} className="mr-4" /> Terms of
             Service
@@ -95,7 +95,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
           <NavLink
             to="/privacy"
             className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-            onClick={() => toggleSidebar()}
+            onClick={toggleSidebar}
           >
             <FontAwesomeIcon icon={faShieldAlt} className="mr-4" /> Privacy
             Policy
@@ -107,7 +107,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <NavLink
                 to="/settings"
                 className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                onClick={() => toggleSidebar()}
+                onClick={toggleSidebar}
               >
                 <FontAwesomeIcon icon={faCog} className="mr-4" /> Settings
               </NavLink>
@@ -127,7 +127,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <NavLink
                 to="/login"
                 className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                onClick={() => toggleSidebar()}
+                onClick={toggleSidebar}
               >
                 <FontAwesomeIcon icon={faSignInAlt} className="mr-4" /> Login
               </NavLink>
@@ -136,7 +136,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <NavLink
                 to="/register"
                 className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
-                onClick={() => toggleSidebar()}
+                onClick={toggleSidebar}
               >
                 <FontAwesomeIcon icon={faUserPlus} className="mr-4" /> Register
               </NavLink>
